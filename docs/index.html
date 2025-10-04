@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WTF is my IP</title>
+  <script>
+    if (!navigator.userAgent.includes("curl")) {
+      fetch("https://api.ipify.org?format=json").then(r=>r.json()).then(d=>{
+        document.write("IPv4: "+d.ip+"<br>");
+      });
+      fetch("https://api64.ipify.org?format=json").then(r=>r.json()).then(d=>{
+        document.write("IPv6: "+d.ip);
+      });
+    } else {
+      window.location.href="https://api.ipify.org"; // for curl
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
