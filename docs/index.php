@@ -20,6 +20,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <head>
     <meta charset="UTF-8">
     <title>WTF is my IP??????????</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Your fucking IPv4 address is:</h1>
