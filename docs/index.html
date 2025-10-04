@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTF is my IP??????????</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Your fucking IPv4 address is:</h1>
+    <p id="ipv4">Loading...</p>
+    
+    <h1>Your fucking IPv6 address is:</h1>
+    <p id="ipv6">Loading...</p>
+
+
+
+    <script>
+        fetch("https://api.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("ipv4").textContent = data.ip;
+            })
+            .catch(() => {
+                document.getElementById("ipv4").textContent = "I fucking can't fetch your IPv4.";
+            });
+        fetch("https://api64.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("ipv6").textContent = data.ip;
+            })
+            .catch(() => {
+                document.getElementById("ipv6").textContent = "I fucking can't fetch your IPv6."
+            });
+    </script>
+
+
+
+</body>
+</html>
