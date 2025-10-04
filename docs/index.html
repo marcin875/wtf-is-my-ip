@@ -9,7 +9,11 @@
 </head>
 <body>
     <h1>Your fucking IPv4 address is:</h1>
-    <p id="ipv4">Loading...</p>
+    <script>
+    fetch("https://api.ipify.org?format=text")
+        .then(r => r.text())
+        .then(ip => document.write(ip));
+    </script>
     
     <h1>Your fucking IPv6 address is:</h1>
     <p id="ipv6">Loading...</p>
