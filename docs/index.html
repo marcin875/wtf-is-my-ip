@@ -1,41 +1,31 @@
+<?php
+// Get client IPs
+$ipv4 = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IPv4';
+$ipv6 = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IPv6'; // PHP sees the same IP, might be IPv6 if client uses it
+
+// Optional: Detect IPv6 separately
+if (filter_var($ipv4, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+    $ipv4_display = $ipv4;
+    $ipv6_display = 'No IPv6 detected';
+} else {
+    $ipv6_display = $ipv4;
+    $ipv4_display = 'No IPv4 detected';
+}
+
+// Serve HTML
+header('Content-Type: text/html; charset=UTF-8');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WTF is my IP??????????</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Your fucking IPv4 address is:</h1>
-    <p id="ipv4">Loading...</p>
-    
+    <p><?php echo htmlspecialchars($ipv4_display); ?></p>
+
     <h1>Your fucking IPv6 address is:</h1>
-    <p id="ipv6">Loading...</p>
-
-
-
-    <script>
-        fetch("https://api.ipify.org?format=json")
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("ipv4").textContent = data.ip;
-            })
-            .catch(() => {
-                document.getElementById("ipv4").textContent = "I fucking can't fetch your IPv4.";
-            });
-        fetch("https://api64.ipify.org?format=json")
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("ipv6").textContent = data.ip;
-            })
-            .catch(() => {
-                document.getElementById("ipv6").textContent = "I fucking can't fetch your IPv6."
-            });
-    </script>
-
-
-
+    <p><?php echo htmlspecialchars($ipv6_display); ?></p>
 </body>
 </html>
